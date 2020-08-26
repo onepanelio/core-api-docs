@@ -105,6 +105,17 @@
             </ul>
           </section>
           <section>
+            <a href="#tag-ServiceService">ServiceService</a>
+            <ul>
+              <li>
+                <a href="#operation--apis-v1beta1--namespace--service-get"> GET /apis/v1beta1/{namespace}/service </a>
+              </li>
+              <li>
+                <a href="#operation--apis-v1beta1--namespace--service--name--get"> GET /apis/v1beta1/{namespace}/service/{name} </a>
+              </li>
+            </ul>
+          </section>
+          <section>
             <a href="#tag-WorkflowService">WorkflowService</a>
             <ul>
               <li>
@@ -180,9 +191,6 @@
               </li>
               <li>
                 <a href="#operation--apis-v1beta1--namespace--workflow_templates--workflowTemplate.uid--versions-post"> POST /apis/v1beta1/{namespace}/workflow_templates/{workflowTemplate.uid}/versions </a>
-              </li>
-              <li>
-                <a href="#operation--apis-v1beta1--namespace--workflow_templates--workflowTemplate.uid--versions--workflowTemplate.version--put"> PUT /apis/v1beta1/{namespace}/workflow_templates/{workflowTemplate.uid}/versions/{workflowTemplate.version} </a>
               </li>
             </ul>
           </section>
@@ -281,6 +289,7 @@
           <a href="#definition-ListFilesResponse"> ListFilesResponse </a>
           <a href="#definition-ListNamespacesResponse"> ListNamespacesResponse </a>
           <a href="#definition-ListSecretsResponse"> ListSecretsResponse </a>
+          <a href="#definition-ListServicesResponse"> ListServicesResponse </a>
           <a href="#definition-ListWorkflowExecutionsResponse"> ListWorkflowExecutionsResponse </a>
           <a href="#definition-ListWorkflowTemplateVersionsResponse"> ListWorkflowTemplateVersionsResponse </a>
           <a href="#definition-ListWorkflowTemplatesResponse"> ListWorkflowTemplatesResponse </a>
@@ -296,11 +305,13 @@
           <a href="#definition-ParameterOption"> ParameterOption </a>
           <a href="#definition-Secret"> Secret </a>
           <a href="#definition-SecretExistsResponse"> SecretExistsResponse </a>
+          <a href="#definition-Service"> Service </a>
           <a href="#definition-Statistics"> Statistics </a>
           <a href="#definition-TokenWrapper"> TokenWrapper </a>
           <a href="#definition-UpdateSecretKeyValueResponse"> UpdateSecretKeyValueResponse </a>
           <a href="#definition-UpdateWorkspaceBody"> UpdateWorkspaceBody </a>
           <a href="#definition-WorkflowExecution"> WorkflowExecution </a>
+          <a href="#definition-WorkflowExecutionMetadata"> WorkflowExecutionMetadata </a>
           <a href="#definition-WorkflowExecutionStatisticReport"> WorkflowExecutionStatisticReport </a>
           <a href="#definition-WorkflowExecutionStatus"> WorkflowExecutionStatus </a>
           <a href="#definition-WorkflowTemplate"> WorkflowTemplate </a>
@@ -335,13 +346,13 @@
                     <span>application/json</span>
                   </h5>
                   <h5>Response Content-Types:
-                    <span>application/json</span>
+                    <span>application/json, application/octet-stream</span>
                   </h5>
                   <h5>Schemes:
                     <span>http, https</span>
                   </h5>
                   <h5>Version:
-                    <span>0.11.0</span>
+                    <span>v0.12.0</span>
                   </h5>
                 </section>
               </div>
@@ -1067,6 +1078,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -1101,14 +1113,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -1181,6 +1213,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -1215,14 +1248,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -1380,6 +1433,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -1414,14 +1468,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -1557,6 +1631,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -1591,14 +1666,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -1671,6 +1766,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -1705,14 +1801,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -1912,6 +2028,7 @@
             <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;options&quot;</span>: [
               {
                 <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -1946,14 +2063,34 @@
           },
           <span class="hljs-attr">&quot;cronStats&quot;</span>: {
             <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-          }
+          },
+          <span class="hljs-attr">&quot;parameters&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+              <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;options&quot;</span>: [
+                {
+                  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                  <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+                }
+              ]
+            }
+          ]
         },
         <span class="hljs-attr">&quot;labels&quot;</span>: [
           {
             <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
           }
-        ]
+        ],
+        <span class="hljs-attr">&quot;metadata&quot;</span>: {
+          <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -2284,6 +2421,7 @@
             <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;options&quot;</span>: [
               {
                 <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -2318,14 +2456,34 @@
           },
           <span class="hljs-attr">&quot;cronStats&quot;</span>: {
             <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-          }
+          },
+          <span class="hljs-attr">&quot;parameters&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+              <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;options&quot;</span>: [
+                {
+                  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                  <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+                }
+              ]
+            }
+          ]
         },
         <span class="hljs-attr">&quot;labels&quot;</span>: [
           {
             <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
           }
-        ]
+        ],
+        <span class="hljs-attr">&quot;metadata&quot;</span>: {
+          <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -3469,6 +3627,299 @@
               </div>
             </div>
           </div>
+          <h1 id="tag-ServiceService" class="swagger-summary-tag" data-traverse-target="tag-ServiceService">ServiceService</h1>
+          <div id="operation--apis-v1beta1--namespace--service-get" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--service-get">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-ServiceService">ServiceService</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/apis/v1beta1/{namespace}/service</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">namespace</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">pageSize</div>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">page</div>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/ListServicesResponse">ListServicesResponse</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">default </div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/grpc.gateway.runtime.Error">grpc.gateway.runtime.Error</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>An unexpected error response</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;count&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;services&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ],
+  <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+                <section>
+                  <h5>Response Example
+                    <span>(default )</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;error&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;details&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;type_url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation--apis-v1beta1--namespace--service--name--get" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--service--name--get">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-ServiceService">ServiceService</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/apis/v1beta1/{namespace}/service/{name}</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">namespace</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">name</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/Service">Service</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">default </div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/grpc.gateway.runtime.Error">grpc.gateway.runtime.Error</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>An unexpected error response</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+                <section>
+                  <h5>Response Example
+                    <span>(default )</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;error&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;details&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;type_url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
           <h1 id="tag-WorkflowService" class="swagger-summary-tag" data-traverse-target="tag-WorkflowService">WorkflowService</h1>
           <div id="operation--apis-v1beta1--namespace--workflow_executions-get" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--workflow_executions-get">
             <!-- <section class="operation-tags row"> -->
@@ -3651,6 +4102,7 @@
           <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;options&quot;</span>: [
             {
               <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -3685,14 +4137,34 @@
         },
         <span class="hljs-attr">&quot;cronStats&quot;</span>: {
           <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;parameters&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;options&quot;</span>: [
+              {
+                <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+              }
+            ]
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
           <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
-      ]
+      ],
+      <span class="hljs-attr">&quot;metadata&quot;</span>: {
+        <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -3796,6 +4268,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -3870,6 +4343,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -3904,14 +4378,34 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
       <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
-  ]
+  ],
+  <span class="hljs-attr">&quot;metadata&quot;</span>: {
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  }
 }
 </code></pre>
                   <!-- </div> -->
@@ -4057,6 +4551,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -4091,14 +4586,34 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
       <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
-  ]
+  ],
+  <span class="hljs-attr">&quot;metadata&quot;</span>: {
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  }
 }
 </code></pre>
                   <!-- </div> -->
@@ -4244,6 +4759,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -4278,14 +4794,34 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
       <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
-  ]
+  ],
+  <span class="hljs-attr">&quot;metadata&quot;</span>: {
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  }
 }
 </code></pre>
                   <!-- </div> -->
@@ -5233,6 +5769,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -5267,14 +5804,34 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
       <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
-  ]
+  ],
+  <span class="hljs-attr">&quot;metadata&quot;</span>: {
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  }
 }
 </code></pre>
                   <!-- </div> -->
@@ -5841,6 +6398,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -5875,14 +6433,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;error&quot;</span>: {
     <span class="hljs-attr">&quot;grpc_code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -6004,6 +6582,25 @@
                     <div class="prop-name param-label">in</div>
                     <div class="prop-value">query</div>
                   </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">labels</div>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
                 </section>
               </div>
               <div class="doc-examples"></div>
@@ -6075,7 +6672,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -6194,7 +6808,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -6265,7 +6896,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -6441,7 +7089,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -6598,7 +7263,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   }
 }
 </code></pre>
@@ -6795,7 +7477,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -6992,7 +7691,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -7151,7 +7867,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     }
   ]
 }
@@ -7330,7 +8063,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -7464,94 +8214,22 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
-}
-</code></pre>
-                  <!-- </div> -->
-                </section>
-              </div>
-            </div>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="swagger-responses">
-                  <div class="prop-row prop-group">
-                    <div class="prop-name">
-                      <div class="prop-title">200 OK</div>
-                      <div class="prop-ref">
-                        <span class="">
-                          <a class="json-schema-ref" href="#/definitions/WorkflowTemplate">WorkflowTemplate</a>
-                        </span>
-                      </div>
-                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
-                    </div>
-                    <div class="prop-value">
-                      <p>A successful response.</p>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-group">
-                    <div class="prop-name">
-                      <div class="prop-title">default </div>
-                      <div class="prop-ref">
-                        <span class="">
-                          <a class="json-schema-ref" href="#/definitions/grpc.gateway.runtime.Error">grpc.gateway.runtime.Error</a>
-                        </span>
-                      </div>
-                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
-                    </div>
-                    <div class="prop-value">
-                      <p>An unexpected error response</p>
-                    </div>
-                  </div>
-                </section>
-              </div>
-              <div class="doc-examples">
-                <section>
-                  <h5>Response Example
-                    <span>(200 OK)</span>
-                  </h5>
-                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;modifiedAt&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;uid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>,
-  <span class="hljs-attr">&quot;versions&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>,
-  <span class="hljs-attr">&quot;manifest&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;isLatest&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
-  <span class="hljs-attr">&quot;labels&quot;</span>: [
-    {
-      <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
-  ],
-  <span class="hljs-attr">&quot;stats&quot;</span>: {
-    <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;lastExecuted&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-    <span class="hljs-attr">&quot;running&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;completed&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;failed&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;terminated&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
   },
-  <span class="hljs-attr">&quot;cronStats&quot;</span>: {
-    <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
-}
-</code></pre>
-                  <!-- </div> -->
-                </section>
-                <section>
-                  <h5>Response Example
-                    <span>(default )</span>
-                  </h5>
-                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;error&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;details&quot;</span>: [
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
     {
-      <span class="hljs-attr">&quot;type_url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
     }
   ]
 }
@@ -7560,143 +8238,6 @@
                 </section>
               </div>
             </div>
-          </div>
-          <div id="operation--apis-v1beta1--namespace--workflow_templates--workflowTemplate.uid--versions--workflowTemplate.version--put" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--workflow_templates--workflowTemplate.uid--versions--workflowTemplate.version--put">
-            <!-- <section class="operation-tags row"> -->
-            <!-- <div class="doc-copy"> -->
-            <div class="operation-tags">
-              <a class="label" href="#tag-WorkflowTemplateService">WorkflowTemplateService</a>
-              <!---->
-            </div>
-            <!-- </div> -->
-            <!-- </section> -->
-            <h2 class="operation-title">
-              <span class="operation-name">
-                <span class="operation-name">PUT</span>
-                <span class="operation-path">/apis/v1beta1/{namespace}/workflow_templates/{workflowTemplate.uid}/versions/{workflowTemplate.version}</span>
-              </span>
-            </h2>
-            <div class="doc-row content-types">
-              <div class="doc-copy"> </div>
-              <div class="doc-examples"> </div>
-            </div>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="swagger-request-body">
-                  <div class="prop-row">
-                    <div class="prop-name">
-                      <div class="swagger-request-model">
-                        <span class="">
-                          <a class="json-schema-ref" href="#/definitions/WorkflowTemplate">WorkflowTemplate</a>
-                        </span>
-                      </div>
-                    </div>
-                    <div class="prop-value columns small-6">
-                      <!-- <div class="swagger-request-description"> -->undefined
-                      <!-- </div> -->
-                    </div>
-                  </div>
-                </section>
-                <section class="swagger-request-params">
-                  <div class="prop-row prop-group">
-                    <div class="prop-name">
-                      <div class="prop-title">namespace</div>
-                      <span class="json-property-required"></span>
-                    </div>
-                    <div class="prop-value">
-                      <p class="no-description">(no description)</p>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-inner">
-                    <div class="prop-name param-label">type</div>
-                    <div class="prop-value">
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-inner">
-                    <div class="prop-name param-label">in</div>
-                    <div class="prop-value">path</div>
-                  </div>
-                  <div class="prop-row prop-group">
-                    <div class="prop-name">
-                      <div class="prop-title">workflowTemplate.uid</div>
-                      <span class="json-property-required"></span>
-                    </div>
-                    <div class="prop-value">
-                      <p class="no-description">(no description)</p>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-inner">
-                    <div class="prop-name param-label">type</div>
-                    <div class="prop-value">
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-inner">
-                    <div class="prop-name param-label">in</div>
-                    <div class="prop-value">path</div>
-                  </div>
-                  <div class="prop-row prop-group">
-                    <div class="prop-name">
-                      <div class="prop-title">workflowTemplate.version</div>
-                      <span class="json-property-required"></span>
-                    </div>
-                    <div class="prop-value">
-                      <p class="no-description">(no description)</p>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-inner">
-                    <div class="prop-name param-label">type</div>
-                    <div class="prop-value">
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-format">(int64)</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </div>
-                  </div>
-                  <div class="prop-row prop-inner">
-                    <div class="prop-name param-label">in</div>
-                    <div class="prop-value">path</div>
-                  </div>
-                </section>
-              </div>
-              <div class="doc-examples">
-                <section>
-                  <h5>Request Example</h5>
-                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;createdAt&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;modifiedAt&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;uid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;version&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>,
-  <span class="hljs-attr">&quot;versions&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>,
-  <span class="hljs-attr">&quot;manifest&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-  <span class="hljs-attr">&quot;isLatest&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
-  <span class="hljs-attr">&quot;labels&quot;</span>: [
-    {
-      <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
-  ],
-  <span class="hljs-attr">&quot;stats&quot;</span>: {
-    <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;lastExecuted&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
-    <span class="hljs-attr">&quot;running&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;completed&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;failed&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-    <span class="hljs-attr">&quot;terminated&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  },
-  <span class="hljs-attr">&quot;cronStats&quot;</span>: {
-    <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
-}
-</code></pre>
-                  <!-- </div> -->
-                </section>
-              </div>
-            </div>
             <div class="doc-row">
               <div class="doc-copy">
                 <section class="swagger-responses">
@@ -7761,7 +8302,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -7948,7 +8506,24 @@
         },
         <span class="hljs-attr">&quot;cronStats&quot;</span>: {
           <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;parameters&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;options&quot;</span>: [
+              {
+                <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+              }
+            ]
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -7956,7 +8531,8 @@
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
       ],
-      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -8082,7 +8658,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -8090,7 +8683,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -8168,7 +8762,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -8176,7 +8787,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -8359,7 +8971,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -8367,7 +8996,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -8508,7 +9138,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -8516,7 +9163,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -8594,7 +9242,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -8602,7 +9267,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -8765,7 +9431,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -8773,7 +9456,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -8939,7 +9623,24 @@
         },
         <span class="hljs-attr">&quot;cronStats&quot;</span>: {
           <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;parameters&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;options&quot;</span>: [
+              {
+                <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+              }
+            ]
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -8947,7 +9648,8 @@
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
       ],
-      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ]
 }
@@ -9090,7 +9792,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -9098,7 +9817,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -9169,7 +9889,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -9336,6 +10073,7 @@
           <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;options&quot;</span>: [
             {
               <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9377,7 +10115,24 @@
           },
           <span class="hljs-attr">&quot;cronStats&quot;</span>: {
             <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-          }
+          },
+          <span class="hljs-attr">&quot;parameters&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+              <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;options&quot;</span>: [
+                {
+                  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                  <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+                }
+              ]
+            }
+          ]
         },
         <span class="hljs-attr">&quot;labels&quot;</span>: [
           {
@@ -9385,7 +10140,8 @@
             <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
           }
         ],
-        <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+        <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       },
       <span class="hljs-attr">&quot;status&quot;</span>: {
         <span class="hljs-attr">&quot;phase&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9408,6 +10164,7 @@
           <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;options&quot;</span>: [
             {
               <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9519,6 +10276,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9590,6 +10348,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9631,7 +10390,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
@@ -9639,7 +10415,8 @@
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
     ],
-    <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+    <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
   },
   <span class="hljs-attr">&quot;status&quot;</span>: {
     <span class="hljs-attr">&quot;phase&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9662,6 +10439,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9812,6 +10590,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9853,7 +10632,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
@@ -9861,7 +10657,8 @@
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
     ],
-    <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+    <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
   },
   <span class="hljs-attr">&quot;status&quot;</span>: {
     <span class="hljs-attr">&quot;phase&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -9884,6 +10681,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -10133,6 +10931,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -11405,7 +12204,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   }
 }
 </code></pre>
@@ -11497,6 +12313,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -11568,6 +12385,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -11661,6 +12479,7 @@
         <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;options&quot;</span>: [
           {
             <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -11695,14 +12514,34 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
         <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
-    ]
+    ],
+    <span class="hljs-attr">&quot;metadata&quot;</span>: {
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -12290,6 +13129,7 @@
             <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;options&quot;</span>: [
               {
                 <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -12324,14 +13164,34 @@
           },
           <span class="hljs-attr">&quot;cronStats&quot;</span>: {
             <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-          }
+          },
+          <span class="hljs-attr">&quot;parameters&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+              <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;options&quot;</span>: [
+                {
+                  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                  <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+                }
+              ]
+            }
+          ]
         },
         <span class="hljs-attr">&quot;labels&quot;</span>: [
           {
             <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
             <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
           }
-        ]
+        ],
+        <span class="hljs-attr">&quot;metadata&quot;</span>: {
+          <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -12508,6 +13368,71 @@
               </div>
             </div>
           </div>
+          <div id="definition-ListServicesResponse" class="definition panel" data-traverse-target="definition-ListServicesResponse">
+            <h2 class="panel-title">
+              <a name="/definitions/ListServicesResponse"></a>ListServicesResponse:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="count">
+                      <span class="json-property-name">count:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="services">
+                      <span class="json-property-name">services:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="page">
+                      <span class="json-property-name">page:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="pages">
+                      <span class="json-property-name">pages:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="totalCount">
+                      <span class="json-property-name">totalCount:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;count&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;services&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ],
+  <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
           <div id="definition-ListWorkflowExecutionsResponse" class="definition panel" data-traverse-target="definition-ListWorkflowExecutionsResponse">
             <h2 class="panel-title">
               <a name="/definitions/ListWorkflowExecutionsResponse"></a>ListWorkflowExecutionsResponse:
@@ -12574,6 +13499,7 @@
           <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;options&quot;</span>: [
             {
               <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -12608,14 +13534,34 @@
         },
         <span class="hljs-attr">&quot;cronStats&quot;</span>: {
           <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;parameters&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;options&quot;</span>: [
+              {
+                <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+              }
+            ]
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
           <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
-      ]
+      ],
+      <span class="hljs-attr">&quot;metadata&quot;</span>: {
+        <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -12686,7 +13632,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     }
   ]
 }
@@ -12772,7 +13735,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -12848,6 +13828,7 @@
           <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;options&quot;</span>: [
             {
               <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -12889,7 +13870,24 @@
           },
           <span class="hljs-attr">&quot;cronStats&quot;</span>: {
             <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-          }
+          },
+          <span class="hljs-attr">&quot;parameters&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+              <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;options&quot;</span>: [
+                {
+                  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                  <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+                }
+              ]
+            }
+          ]
         },
         <span class="hljs-attr">&quot;labels&quot;</span>: [
           {
@@ -12897,7 +13895,8 @@
             <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
           }
         ],
-        <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+        <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       },
       <span class="hljs-attr">&quot;status&quot;</span>: {
         <span class="hljs-attr">&quot;phase&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -12920,6 +13919,7 @@
           <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
           <span class="hljs-attr">&quot;options&quot;</span>: [
             {
               <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -13005,7 +14005,24 @@
         },
         <span class="hljs-attr">&quot;cronStats&quot;</span>: {
           <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;parameters&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;options&quot;</span>: [
+              {
+                <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+              }
+            ]
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -13013,7 +14030,8 @@
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
       ],
-      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ]
 }
@@ -13106,7 +14124,24 @@
         },
         <span class="hljs-attr">&quot;cronStats&quot;</span>: {
           <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;parameters&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+            <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;options&quot;</span>: [
+              {
+                <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+                <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+              }
+            ]
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -13114,7 +14149,8 @@
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
       ],
-      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+      <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -13366,6 +14402,11 @@
                       <span class="json-property-format">(boolean)</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="visibility">
+                      <span class="json-property-name">visibility:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                     <dt data-property-name="options">
                       <span class="json-property-name">options:</span>
                       <span class="json-property-type">object[]</span>
@@ -13384,6 +14425,7 @@
   <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;options&quot;</span>: [
     {
       <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -13499,6 +14541,44 @@
                   <h5>Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;exists&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Service" class="definition panel" data-traverse-target="definition-Service">
+            <h2 class="panel-title">
+              <a name="/definitions/Service"></a>Service:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="name">
+                      <span class="json-property-name">name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="url">
+                      <span class="json-property-name">url:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -13647,6 +14727,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -13734,6 +14815,15 @@
                       <span class="json-property-type">object[]</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="metadata">
+                      <span class="json-property-name">metadata:</span>
+                      <span class="json-property-type">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/WorkflowExecutionMetadata">WorkflowExecutionMetadata</a>
+                        </span>
+                      </span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -13756,6 +14846,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -13790,14 +14881,66 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
       <span class="hljs-attr">&quot;key&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
-  ]
+  ],
+  <span class="hljs-attr">&quot;metadata&quot;</span>: {
+    <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  }
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-WorkflowExecutionMetadata" class="definition panel" data-traverse-target="definition-WorkflowExecutionMetadata">
+            <h2 class="panel-title">
+              <a name="/definitions/WorkflowExecutionMetadata"></a>WorkflowExecutionMetadata:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="url">
+                      <span class="json-property-name">url:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -13988,6 +15131,11 @@
                       </span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="parameters">
+                      <span class="json-property-name">parameters:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -14020,7 +15168,24 @@
   },
   <span class="hljs-attr">&quot;cronStats&quot;</span>: {
     <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;parameters&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;options&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -14118,6 +15283,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -14159,7 +15325,24 @@
       },
       <span class="hljs-attr">&quot;cronStats&quot;</span>: {
         <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;parameters&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+          <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;options&quot;</span>: [
+            {
+              <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+              <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+            }
+          ]
+        }
+      ]
     },
     <span class="hljs-attr">&quot;labels&quot;</span>: [
       {
@@ -14167,7 +15350,8 @@
         <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
       }
     ],
-    <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+    <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+    <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
   },
   <span class="hljs-attr">&quot;status&quot;</span>: {
     <span class="hljs-attr">&quot;phase&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -14190,6 +15374,7 @@
       <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+      <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
       <span class="hljs-attr">&quot;options&quot;</span>: [
         {
           <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
@@ -14319,6 +15504,11 @@
                       <span class="json-property-format">(boolean)</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="description">
+                      <span class="json-property-name">description:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -14358,7 +15548,24 @@
     },
     <span class="hljs-attr">&quot;cronStats&quot;</span>: {
       <span class="hljs-attr">&quot;total&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;parameters&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;type&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;displayName&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;hint&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;required&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+        <span class="hljs-attr">&quot;visibility&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;options&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -14366,7 +15573,8 @@
       <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ],
-  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>
+  <span class="hljs-attr">&quot;isArchived&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;description&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
