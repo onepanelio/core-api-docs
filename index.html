@@ -293,6 +293,7 @@
           <a href="#definition-GetWorkspaceStatisticsForNamespaceResponse"> GetWorkspaceStatisticsForNamespaceResponse </a>
           <a href="#definition-IsAuthorized"> IsAuthorized </a>
           <a href="#definition-IsAuthorizedResponse"> IsAuthorizedResponse </a>
+          <a href="#definition-IsValidTokenRequest"> IsValidTokenRequest </a>
           <a href="#definition-IsValidTokenResponse"> IsValidTokenResponse </a>
           <a href="#definition-KeyValue"> KeyValue </a>
           <a href="#definition-Labels"> Labels </a>
@@ -318,7 +319,6 @@
           <a href="#definition-SecretExistsResponse"> SecretExistsResponse </a>
           <a href="#definition-Service"> Service </a>
           <a href="#definition-Statistics"> Statistics </a>
-          <a href="#definition-TokenWrapper"> TokenWrapper </a>
           <a href="#definition-UpdateSecretKeyValueResponse"> UpdateSecretKeyValueResponse </a>
           <a href="#definition-UpdateWorkspaceBody"> UpdateWorkspaceBody </a>
           <a href="#definition-WorkflowExecution"> WorkflowExecution </a>
@@ -364,7 +364,7 @@
                     <span>http, https</span>
                   </h5>
                   <h5>Version:
-                    <span>0.13.0</span>
+                    <span>0.14.0</span>
                   </h5>
                 </section>
               </div>
@@ -548,7 +548,7 @@
                     <div class="prop-name">
                       <div class="swagger-request-model">
                         <span class="">
-                          <a class="json-schema-ref" href="#/definitions/TokenWrapper">TokenWrapper</a>
+                          <a class="json-schema-ref" href="#/definitions/IsValidTokenRequest">IsValidTokenRequest</a>
                         </span>
                       </div>
                     </div>
@@ -563,6 +563,7 @@
                 <section>
                   <h5>Request Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
@@ -609,7 +610,9 @@
                     <span>(200 OK)</span>
                   </h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;domain&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  <span class="hljs-attr">&quot;domain&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -13620,6 +13623,44 @@
               </div>
             </div>
           </div>
+          <div id="definition-IsValidTokenRequest" class="definition panel" data-traverse-target="definition-IsValidTokenRequest">
+            <h2 class="panel-title">
+              <a name="/definitions/IsValidTokenRequest"></a>IsValidTokenRequest:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="username">
+                      <span class="json-property-name">username:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="token">
+                      <span class="json-property-name">token:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
           <div id="definition-IsValidTokenResponse" class="definition panel" data-traverse-target="definition-IsValidTokenResponse">
             <h2 class="panel-title">
               <a name="/definitions/IsValidTokenResponse"></a>IsValidTokenResponse:
@@ -13637,6 +13678,16 @@
                       <span class="json-property-type">string</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="token">
+                      <span class="json-property-name">token:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="username">
+                      <span class="json-property-name">username:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -13644,7 +13695,9 @@
                 <section>
                   <h5>Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;domain&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+  <span class="hljs-attr">&quot;domain&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;username&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -15286,38 +15339,6 @@
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;workflowStatus&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
   <span class="hljs-attr">&quot;workflowTemplateId&quot;</span>: <span class="hljs-string">&quot;string (int64)&quot;</span>
-}
-</code></pre>
-                  <!-- </div> -->
-                </section>
-              </div>
-            </div>
-          </div>
-          <div id="definition-TokenWrapper" class="definition panel" data-traverse-target="definition-TokenWrapper">
-            <h2 class="panel-title">
-              <a name="/definitions/TokenWrapper"></a>TokenWrapper:
-              <span class="json-property-type">
-                <span class="json-property-type">object</span>
-                <span class="json-property-range" title="Value limits"></span>
-              </span>
-            </h2>
-            <div class="doc-row">
-              <div class="doc-copy">
-                <section class="json-schema-properties">
-                  <dl>
-                    <dt data-property-name="token">
-                      <span class="json-property-name">token:</span>
-                      <span class="json-property-type">string</span>
-                      <span class="json-property-range" title="Value limits"></span>
-                    </dt>
-                  </dl>
-                </section>
-              </div>
-              <div class="doc-examples">
-                <section>
-                  <h5>Example</h5>
-                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
-  <span class="hljs-attr">&quot;token&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
