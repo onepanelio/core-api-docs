@@ -166,6 +166,12 @@
                 <a href="#operation--apis-v1beta1--namespace--workflow_executions--uid--files--path--get"> GET /apis/v1beta1/{namespace}/workflow_executions/{uid}/files/{path} </a>
               </li>
               <li>
+                <a href="#operation--apis-v1beta1--namespace--workflow_executions--uid--metric-post"> POST /apis/v1beta1/{namespace}/workflow_executions/{uid}/metric </a>
+              </li>
+              <li>
+                <a href="#operation--apis-v1beta1--namespace--workflow_executions--uid--metric-put"> PUT /apis/v1beta1/{namespace}/workflow_executions/{uid}/metric </a>
+              </li>
+              <li>
                 <a href="#operation--apis-v1beta1--namespace--workflow_executions--uid--pods--podName--containers--containerName--logs-get"> GET /apis/v1beta1/{namespace}/workflow_executions/{uid}/pods/{podName}/containers/{containerName}/logs </a>
               </li>
               <li>
@@ -283,6 +289,7 @@
           </section>
           <h5>Schema Definitions</h5>
           <a href="#definition-AddSecretKeyValueResponse"> AddSecretKeyValueResponse </a>
+          <a href="#definition-AddWorkflowExecutionsMetricsRequest"> AddWorkflowExecutionsMetricsRequest </a>
           <a href="#definition-ArchiveWorkflowTemplateResponse"> ArchiveWorkflowTemplateResponse </a>
           <a href="#definition-ArtifactResponse"> ArtifactResponse </a>
           <a href="#definition-CreateWorkflowExecutionBody"> CreateWorkflowExecutionBody </a>
@@ -328,11 +335,13 @@
           <a href="#definition-Service"> Service </a>
           <a href="#definition-Statistics"> Statistics </a>
           <a href="#definition-UpdateSecretKeyValueResponse"> UpdateSecretKeyValueResponse </a>
+          <a href="#definition-UpdateWorkflowExecutionsMetricsRequest"> UpdateWorkflowExecutionsMetricsRequest </a>
           <a href="#definition-UpdateWorkspaceBody"> UpdateWorkspaceBody </a>
           <a href="#definition-WorkflowExecution"> WorkflowExecution </a>
           <a href="#definition-WorkflowExecutionMetadata"> WorkflowExecutionMetadata </a>
           <a href="#definition-WorkflowExecutionStatisticReport"> WorkflowExecutionStatisticReport </a>
           <a href="#definition-WorkflowExecutionStatus"> WorkflowExecutionStatus </a>
+          <a href="#definition-WorkflowExecutionsMetricsResponse"> WorkflowExecutionsMetricsResponse </a>
           <a href="#definition-WorkflowTemplate"> WorkflowTemplate </a>
           <a href="#definition-Workspace"> Workspace </a>
           <a href="#definition-WorkspaceStatisticReport"> WorkspaceStatisticReport </a>
@@ -372,7 +381,7 @@
                     <span>http, https</span>
                   </h5>
                   <h5>Version:
-                    <span>0.15.0</span>
+                    <span>0.16.0</span>
                   </h5>
                 </section>
               </div>
@@ -2156,7 +2165,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -2291,7 +2307,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -2511,7 +2534,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -2709,7 +2739,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -2844,7 +2881,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -3106,7 +3150,14 @@
         ],
         <span class="hljs-attr">&quot;metadata&quot;</span>: {
           <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;metrics&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+            <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -3499,7 +3550,14 @@
         ],
         <span class="hljs-attr">&quot;metadata&quot;</span>: {
           <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;metrics&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+            <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -5257,12 +5315,20 @@
       ],
       <span class="hljs-attr">&quot;metadata&quot;</span>: {
         <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;metrics&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+          <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
   <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalAvailableCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -5498,7 +5564,14 @@
   ],
   <span class="hljs-attr">&quot;metadata&quot;</span>: {
     <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -5824,7 +5897,14 @@
   ],
   <span class="hljs-attr">&quot;metadata&quot;</span>: {
     <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -6032,7 +6112,14 @@
   ],
   <span class="hljs-attr">&quot;metadata&quot;</span>: {
     <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -6496,6 +6583,345 @@
     }
   ],
   <span class="hljs-attr">&quot;parentPath&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+                <section>
+                  <h5>Response Example
+                    <span>(default )</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;error&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;details&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;type_url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation--apis-v1beta1--namespace--workflow_executions--uid--metric-post" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--workflow_executions--uid--metric-post">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-WorkflowService">WorkflowService</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">POST</span>
+                <span class="operation-path">/apis/v1beta1/{namespace}/workflow_executions/{uid}/metric</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body">
+                  <div class="prop-row">
+                    <div class="prop-name">
+                      <div class="swagger-request-model">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/AddWorkflowExecutionsMetricsRequest">AddWorkflowExecutionsMetricsRequest</a>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="prop-value columns small-6">
+                      <!-- <div class="swagger-request-description"> -->undefined
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                </section>
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">namespace</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">uid</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Request Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;namespace&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;uid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;override&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/WorkflowExecutionsMetricsResponse">WorkflowExecutionsMetricsResponse</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">default </div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/grpc.gateway.runtime.Error">grpc.gateway.runtime.Error</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>An unexpected error response</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+                <section>
+                  <h5>Response Example
+                    <span>(default )</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;error&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;details&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;type_url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation--apis-v1beta1--namespace--workflow_executions--uid--metric-put" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--workflow_executions--uid--metric-put">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-WorkflowService">WorkflowService</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">PUT</span>
+                <span class="operation-path">/apis/v1beta1/{namespace}/workflow_executions/{uid}/metric</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body">
+                  <div class="prop-row">
+                    <div class="prop-name">
+                      <div class="swagger-request-model">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/UpdateWorkflowExecutionsMetricsRequest">UpdateWorkflowExecutionsMetricsRequest</a>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="prop-value columns small-6">
+                      <!-- <div class="swagger-request-description"> -->undefined
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                </section>
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">namespace</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">uid</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Request Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;namespace&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;uid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/WorkflowExecutionsMetricsResponse">WorkflowExecutionsMetricsResponse</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">default </div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/grpc.gateway.runtime.Error">grpc.gateway.runtime.Error</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>An unexpected error response</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -7042,7 +7468,14 @@
   ],
   <span class="hljs-attr">&quot;metadata&quot;</span>: {
     <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -7671,7 +8104,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;error&quot;</span>: {
     <span class="hljs-attr">&quot;grpc_code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
@@ -7905,7 +8345,8 @@
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
   <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalAvailableCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -9985,7 +10426,8 @@
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
   <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalAvailableCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -13024,6 +13466,63 @@
               </div>
             </div>
           </div>
+          <div id="definition-AddWorkflowExecutionsMetricsRequest" class="definition panel" data-traverse-target="definition-AddWorkflowExecutionsMetricsRequest">
+            <h2 class="panel-title">
+              <a name="/definitions/AddWorkflowExecutionsMetricsRequest"></a>AddWorkflowExecutionsMetricsRequest:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="namespace">
+                      <span class="json-property-name">namespace:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="uid">
+                      <span class="json-property-name">uid:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="override">
+                      <span class="json-property-name">override:</span>
+                      <span class="json-property-type">boolean</span>
+                      <span class="json-property-format">(boolean)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="metrics">
+                      <span class="json-property-name">metrics:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;namespace&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;uid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;override&quot;</span>: <span class="hljs-string">&quot;boolean (boolean)&quot;</span>,
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
           <div id="definition-ArchiveWorkflowTemplateResponse" class="definition panel" data-traverse-target="definition-ArchiveWorkflowTemplateResponse">
             <h2 class="panel-title">
               <a name="/definitions/ArchiveWorkflowTemplateResponse"></a>ArchiveWorkflowTemplateResponse:
@@ -13415,7 +13914,14 @@
     ],
     <span class="hljs-attr">&quot;metadata&quot;</span>: {
       <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-    }
+    },
+    <span class="hljs-attr">&quot;metrics&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+        <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
   },
   <span class="hljs-attr">&quot;labels&quot;</span>: [
     {
@@ -14292,7 +14798,14 @@
         ],
         <span class="hljs-attr">&quot;metadata&quot;</span>: {
           <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-        }
+        },
+        <span class="hljs-attr">&quot;metrics&quot;</span>: [
+          {
+            <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+            <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+            <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+          }
+        ]
       },
       <span class="hljs-attr">&quot;labels&quot;</span>: [
         {
@@ -14575,6 +15088,12 @@
                       <span class="json-property-format">(int32)</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="totalAvailableCount">
+                      <span class="json-property-name">totalAvailableCount:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -14662,12 +15181,20 @@
       ],
       <span class="hljs-attr">&quot;metadata&quot;</span>: {
         <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-      }
+      },
+      <span class="hljs-attr">&quot;metrics&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+          <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
+      ]
     }
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
   <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalAvailableCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -14801,6 +15328,12 @@
                       <span class="json-property-format">(int32)</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="totalAvailableCount">
+                      <span class="json-property-name">totalAvailableCount:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -14858,7 +15391,8 @@
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
   <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalAvailableCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -14903,6 +15437,12 @@
                     </dt>
                     <dt data-property-name="totalCount">
                       <span class="json-property-name">totalCount:</span>
+                      <span class="json-property-type">integer</span>
+                      <span class="json-property-format">(int32)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="totalAvailableCount">
+                      <span class="json-property-name">totalAvailableCount:</span>
                       <span class="json-property-type">integer</span>
                       <span class="json-property-format">(int32)</span>
                       <span class="json-property-range" title="Value limits"></span>
@@ -15033,7 +15573,8 @@
   ],
   <span class="hljs-attr">&quot;page&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
   <span class="hljs-attr">&quot;pages&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
-  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
+  <span class="hljs-attr">&quot;totalCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;totalAvailableCount&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -15759,6 +16300,56 @@
               </div>
             </div>
           </div>
+          <div id="definition-UpdateWorkflowExecutionsMetricsRequest" class="definition panel" data-traverse-target="definition-UpdateWorkflowExecutionsMetricsRequest">
+            <h2 class="panel-title">
+              <a name="/definitions/UpdateWorkflowExecutionsMetricsRequest"></a>UpdateWorkflowExecutionsMetricsRequest:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="namespace">
+                      <span class="json-property-name">namespace:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="uid">
+                      <span class="json-property-name">uid:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="metrics">
+                      <span class="json-property-name">metrics:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;namespace&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;uid&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
           <div id="definition-UpdateWorkspaceBody" class="definition panel" data-traverse-target="definition-UpdateWorkspaceBody">
             <h2 class="panel-title">
               <a name="/definitions/UpdateWorkspaceBody"></a>UpdateWorkspaceBody:
@@ -15893,6 +16484,11 @@
                       </span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="metrics">
+                      <span class="json-property-name">metrics:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -15977,7 +16573,14 @@
   ],
   <span class="hljs-attr">&quot;metadata&quot;</span>: {
     <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
-  }
+  },
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
@@ -16109,6 +16712,44 @@
                   <h5>Example</h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
   <span class="hljs-attr">&quot;phase&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-WorkflowExecutionsMetricsResponse" class="definition panel" data-traverse-target="definition-WorkflowExecutionsMetricsResponse">
+            <h2 class="panel-title">
+              <a name="/definitions/WorkflowExecutionsMetricsResponse"></a>WorkflowExecutionsMetricsResponse:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="metrics">
+                      <span class="json-property-name">metrics:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;metrics&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;number (double)&quot;</span>,
+      <span class="hljs-attr">&quot;format&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
+  ]
 }
 </code></pre>
                   <!-- </div> -->
