@@ -42,6 +42,9 @@
               <li>
                 <a href="#operation--apis-v1beta1-config-get"> GET /apis/v1beta1/config </a>
               </li>
+              <li>
+                <a href="#operation--apis-v1beta1--namespace--config-get"> GET /apis/v1beta1/{namespace}/config </a>
+              </li>
             </ul>
           </section>
           <section>
@@ -231,6 +234,9 @@
                 <a href="#operation--apis-v1beta1--namespace--workspaces--uid--put"> PUT /apis/v1beta1/{namespace}/workspaces/{uid} </a>
               </li>
               <li>
+                <a href="#operation--apis-v1beta1--namespace--workspaces--uid--containers--containerName--logs-get"> GET /apis/v1beta1/{namespace}/workspaces/{uid}/containers/{containerName}/logs </a>
+              </li>
+              <li>
                 <a href="#operation--apis-v1beta1--namespace--workspaces--uid--pause-put"> PUT /apis/v1beta1/{namespace}/workspaces/{uid}/pause </a>
               </li>
               <li>
@@ -306,6 +312,7 @@
           <a href="#definition-GetAccessTokenResponse"> GetAccessTokenResponse </a>
           <a href="#definition-GetConfigResponse"> GetConfigResponse </a>
           <a href="#definition-GetLabelsResponse"> GetLabelsResponse </a>
+          <a href="#definition-GetNamespaceConfigResponse"> GetNamespaceConfigResponse </a>
           <a href="#definition-GetWorkflowExecutionMetricsResponse"> GetWorkflowExecutionMetricsResponse </a>
           <a href="#definition-GetWorkflowExecutionStatisticsForNamespaceResponse"> GetWorkflowExecutionStatisticsForNamespaceResponse </a>
           <a href="#definition-GetWorkspaceStatisticsForNamespaceResponse"> GetWorkspaceStatisticsForNamespaceResponse </a>
@@ -348,6 +355,7 @@
           <a href="#definition-WorkflowExecutionsMetricsResponse"> WorkflowExecutionsMetricsResponse </a>
           <a href="#definition-WorkflowTemplate"> WorkflowTemplate </a>
           <a href="#definition-Workspace"> Workspace </a>
+          <a href="#definition-WorkspaceComponent"> WorkspaceComponent </a>
           <a href="#definition-WorkspaceStatisticReport"> WorkspaceStatisticReport </a>
           <a href="#definition-WorkspaceStatus"> WorkspaceStatus </a>
           <a href="#definition-WorkspaceTemplate"> WorkspaceTemplate </a>
@@ -384,7 +392,7 @@
                     <span>http, https</span>
                   </h5>
                   <h5>Version:
-                    <span>0.17.0</span>
+                    <span>0.18.0</span>
                   </h5>
                 </section>
               </div>
@@ -846,6 +854,116 @@
       }
     ]
   }
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+                <section>
+                  <h5>Response Example
+                    <span>(default )</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;details&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;typeUrl&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation--apis-v1beta1--namespace--config-get" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--config-get">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-ConfigService">ConfigService</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/apis/v1beta1/{namespace}/config</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">namespace</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/GetNamespaceConfigResponse">GetNamespaceConfigResponse</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">default </div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/google.rpc.Status">google.rpc.Status</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>An unexpected error response.</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;bucket&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
@@ -9750,6 +9868,12 @@
             }
           ]
         }
+      ],
+      <span class="hljs-attr">&quot;workspaceComponents&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+        }
       ]
     }
   ],
@@ -10025,6 +10149,12 @@
         }
       ]
     }
+  ],
+  <span class="hljs-attr">&quot;workspaceComponents&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   ]
 }
 </code></pre>
@@ -10265,6 +10395,12 @@
           <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
       ]
+    }
+  ],
+  <span class="hljs-attr">&quot;workspaceComponents&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
     }
   ]
 }
@@ -10562,6 +10698,189 @@
                     <span>(200 OK)</span>
                   </h5>
                   <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+                <section>
+                  <h5>Response Example
+                    <span>(default )</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+  <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;details&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;typeUrl&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+    }
+  ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="operation--apis-v1beta1--namespace--workspaces--uid--containers--containerName--logs-get" class="operation panel" data-traverse-target="operation--apis-v1beta1--namespace--workspaces--uid--containers--containerName--logs-get">
+            <!-- <section class="operation-tags row"> -->
+            <!-- <div class="doc-copy"> -->
+            <div class="operation-tags">
+              <a class="label" href="#tag-WorkspaceService">WorkspaceService</a>
+              <!---->
+            </div>
+            <!-- </div> -->
+            <!-- </section> -->
+            <h2 class="operation-title">
+              <span class="operation-name">
+                <span class="operation-name">GET</span>
+                <span class="operation-path">/apis/v1beta1/{namespace}/workspaces/{uid}/containers/{containerName}/logs</span>
+              </span>
+            </h2>
+            <div class="doc-row content-types">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples"> </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-params">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">namespace</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">uid</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">containerName</div>
+                      <span class="json-property-required"></span>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">path</div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">sinceTime</div>
+                    </div>
+                    <div class="prop-value">
+                      <p class="no-description">(no description)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">type</div>
+                    <div class="prop-value">
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-format">(int64)</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-inner">
+                    <div class="prop-name param-label">in</div>
+                    <div class="prop-value">query</div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples"></div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-responses">
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">200 OK</div>
+                      <div class="prop-ref"></div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>A successful response.(streaming responses)</p>
+                    </div>
+                  </div>
+                  <div class="prop-row prop-group">
+                    <div class="prop-name">
+                      <div class="prop-title">default </div>
+                      <div class="prop-ref">
+                        <span class="">
+                          <a class="json-schema-ref" href="#/definitions/google.rpc.Status">google.rpc.Status</a>
+                        </span>
+                      </div>
+                      <!-- <span class="swagger-global"></span> <span class="json-schema-reference"><a href=""></a></span> -->
+                    </div>
+                    <div class="prop-value">
+                      <p>An unexpected error response.</p>
+                    </div>
+                  </div>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response Example
+                    <span>(200 OK)</span>
+                  </h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;result&quot;</span>: {
+    <span class="hljs-attr">&quot;logEntries&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;timestamp&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;content&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+      }
+    ]
+  },
+  <span class="hljs-attr">&quot;error&quot;</span>: {
+    <span class="hljs-attr">&quot;code&quot;</span>: <span class="hljs-string">&quot;integer (int32)&quot;</span>,
+    <span class="hljs-attr">&quot;message&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+    <span class="hljs-attr">&quot;details&quot;</span>: [
+      {
+        <span class="hljs-attr">&quot;typeUrl&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+        <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string (byte)&quot;</span>
+      }
+    ]
+  }
+}
 </code></pre>
                   <!-- </div> -->
                 </section>
@@ -14492,6 +14811,38 @@
               </div>
             </div>
           </div>
+          <div id="definition-GetNamespaceConfigResponse" class="definition panel" data-traverse-target="definition-GetNamespaceConfigResponse">
+            <h2 class="panel-title">
+              <a name="/definitions/GetNamespaceConfigResponse"></a>GetNamespaceConfigResponse:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="bucket">
+                      <span class="json-property-name">bucket:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;bucket&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
           <div id="definition-GetWorkflowExecutionMetricsResponse" class="definition panel" data-traverse-target="definition-GetWorkflowExecutionMetricsResponse">
             <h2 class="panel-title">
               <a name="/definitions/GetWorkflowExecutionMetricsResponse"></a>GetWorkflowExecutionMetricsResponse:
@@ -15771,6 +16122,12 @@
               <span class="hljs-attr">&quot;value&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
             }
           ]
+        }
+      ],
+      <span class="hljs-attr">&quot;workspaceComponents&quot;</span>: [
+        {
+          <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+          <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
         }
       ]
     }
@@ -17210,6 +17567,11 @@
                       <span class="json-property-type">object[]</span>
                       <span class="json-property-range" title="Value limits"></span>
                     </dt>
+                    <dt data-property-name="workspaceComponents">
+                      <span class="json-property-name">workspaceComponents:</span>
+                      <span class="json-property-type">object[]</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
                   </dl>
                 </section>
               </div>
@@ -17328,7 +17690,51 @@
         }
       ]
     }
+  ],
+  <span class="hljs-attr">&quot;workspaceComponents&quot;</span>: [
+    {
+      <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+      <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
+    }
   ]
+}
+</code></pre>
+                  <!-- </div> -->
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-WorkspaceComponent" class="definition panel" data-traverse-target="definition-WorkspaceComponent">
+            <h2 class="panel-title">
+              <a name="/definitions/WorkspaceComponent"></a>WorkspaceComponent:
+              <span class="json-property-type">
+                <span class="json-property-type">object</span>
+                <span class="json-property-range" title="Value limits"></span>
+              </span>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-properties">
+                  <dl>
+                    <dt data-property-name="name">
+                      <span class="json-property-name">name:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                    <dt data-property-name="url">
+                      <span class="json-property-name">url:</span>
+                      <span class="json-property-type">string</span>
+                      <span class="json-property-range" title="Value limits"></span>
+                    </dt>
+                  </dl>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <!-- <div class="hljs"> --><pre><code class="hljs lang-json">{
+  <span class="hljs-attr">&quot;name&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>,
+  <span class="hljs-attr">&quot;url&quot;</span>: <span class="hljs-string">&quot;string&quot;</span>
 }
 </code></pre>
                   <!-- </div> -->
